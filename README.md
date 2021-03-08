@@ -30,6 +30,8 @@ $ yarn //instala dependências
 $ yarn dev //starta o servidor
 
 $ yarn test //inicia todos os tests
+
+$ yarn typeorm migration:run //rodar todas as migration
 ```
 
 # Usando Docker Compose:
