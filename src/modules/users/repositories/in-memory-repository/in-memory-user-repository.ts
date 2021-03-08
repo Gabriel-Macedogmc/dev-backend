@@ -33,6 +33,8 @@ export class InMemoryUserRepository implements IUserRepository {
       data,
     );
 
+    this.users.push(user);
+
     return user;
   }
 

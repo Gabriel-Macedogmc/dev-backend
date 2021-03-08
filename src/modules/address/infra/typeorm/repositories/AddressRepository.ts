@@ -26,8 +26,8 @@ export class AddressRepository implements IAddressRepository {
     return address;
   }
 
-  public async findByCep(cep: string): Promise<Address | undefined> {
-    const ceps = await this.ormRepository.findOne({
+  public async findByCep(cep: string): Promise<Address> {
+    const ceps = await this.ormRepository.findOneOrFail({
       relations: ['user'],
       where: { CEP: cep },
     });

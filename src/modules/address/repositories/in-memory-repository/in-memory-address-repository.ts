@@ -34,6 +34,8 @@ export class InMemoryAddressRepository implements IAddressRepository {
       data,
     );
 
+    this.address.push(address);
+
     return address;
   }
 
@@ -47,7 +49,8 @@ export class InMemoryAddressRepository implements IAddressRepository {
   }
 
   public async delete(address_id: string): Promise<void> {
-    const address = this.address.findIndex(find => find.id === address_id);
+    this.address.findIndex(find => find.id === address_id);
+
     this.address.pop();
   }
 }
