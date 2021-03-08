@@ -25,6 +25,8 @@
 
 # Exemplos de Endpoints
 
+- Todos parâmetros passados as rotas são do tipo string
+
 POST /users/
 ```
 {
