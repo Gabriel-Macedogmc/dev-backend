@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import { AppError } from '@/shared/errors/AppError';
 import '../../container';
 import Express, { json, Request, Response, NextFunction } from 'express';
@@ -26,4 +27,6 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   });
 });
 
-app.listen(3333, () => console.log('server on'));
+const port = process.env.PORT || 3333;
+
+app.listen(port, () => console.log('server on'));

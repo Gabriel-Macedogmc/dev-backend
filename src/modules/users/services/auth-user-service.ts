@@ -19,7 +19,7 @@ interface IResponse {
 }
 
 @injectable()
-export default class AuthUsersService {
+export class AuthUsersService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
     @inject('HashProvider') private hash: IHashProvider,
@@ -29,6 +29,12 @@ export default class AuthUsersService {
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
       throw new AppError('Email/Password does not match.', 401);
+    }
+
+    let tester = /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+    if (!tester.test(email)) {
+      throw new AppError('Email invalid', 401);
     }
 
     const passwordMatched = await this.hash.compareHash(

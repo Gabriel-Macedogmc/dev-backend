@@ -1,5 +1,5 @@
 import { AppError } from './../../../shared/errors/AppError';
-import DeleteUserService from '@/modules/users/services/delete-user-service';
+import { DeleteUserService } from '@/modules/users/services/delete-user-service';
 import { InMemoryUserRepository } from './../repositories/in-memory-repository/in-memory-user-repository';
 
 let inMemoryUserRepository: InMemoryUserRepository;

@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import UpdateUsersService from '@/modules/users/services/update-user-service';
+import { UpdateUsersService } from '@/modules/users/services/update-user-service';
 import { Request, Response } from 'express';
 
 export class UpdateUserController {

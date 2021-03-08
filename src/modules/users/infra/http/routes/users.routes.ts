@@ -21,7 +21,7 @@ const userRouter = Router();
 
 userRouter.post('/', createUserController.create);
 userRouter.get('/', AuthMiddleware, findUsersController.find);
-userRouter.get('/:id', AuthMiddleware, findUserController.find);
+userRouter.get('/:user_id', AuthMiddleware, findUserController.find);
 userRouter.put('/:user_id', AuthMiddleware, updateUserController.create);
 userRouter.delete('/:user_id', AuthMiddleware, deleteUserController.delete);
 

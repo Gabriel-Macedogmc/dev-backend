@@ -4,7 +4,7 @@ import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
 
 @injectable()
-export default class DeleteUserService {
+export class DeleteUserService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
   ) {}
@@ -15,6 +15,8 @@ export default class DeleteUserService {
     if (!user) {
       throw new AppError('User not found', 401);
     }
+
+    console.log(user);
 
     await this.userRepository.delete(user_id);
   }

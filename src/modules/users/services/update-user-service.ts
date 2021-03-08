@@ -23,7 +23,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class UpdateUsersService {
+export class UpdateUsersService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
     @inject('HashProvider') private hash: IHashProvider,
@@ -43,6 +43,12 @@ export default class UpdateUsersService {
     }
 
     const checkEmail = await this.userRepository.findByEmail(email);
+
+    let tester = /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+    if (!tester.test(email)) {
+      throw new AppError('Email invalid', 401);
+    }
 
     if (checkEmail && checkEmail.id !== user_id) {
       throw new AppError('This email is already used by another user.');

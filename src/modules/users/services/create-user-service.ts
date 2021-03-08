@@ -21,7 +21,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class CreateUserService {
+export class CreateUserService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
     @inject('HashProvider') private hash: IHashProvider,

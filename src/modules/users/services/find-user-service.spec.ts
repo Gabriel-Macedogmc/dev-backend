@@ -1,5 +1,5 @@
 import { AppError } from '@/shared/errors/AppError';
-import FindUserService from '@/modules/users/services/find-user-service';
+import { FindUserService } from '@/modules/users/services/find-user-service';
 import { InMemoryUserRepository } from './../repositories/in-memory-repository/in-memory-user-repository';
 
 let inMemoryUserRepository: InMemoryUserRepository;

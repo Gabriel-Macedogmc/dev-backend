@@ -1,5 +1,5 @@
 import { AppError } from '@/shared/errors/AppError';
-import UpdateUsersService from '@/modules/users/services/update-user-service';
+import { UpdateUsersService } from '@/modules/users/services/update-user-service';
 import { InMemoryUserRepository } from './../repositories/in-memory-repository/in-memory-user-repository';
 import { InMemoryHashProvider } from './../provider/fake/in-memory-hash-provider';
 

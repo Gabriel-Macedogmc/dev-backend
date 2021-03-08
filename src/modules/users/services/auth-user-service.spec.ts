@@ -1,6 +1,6 @@
 import { InMemoryHashProvider } from './../provider/fake/in-memory-hash-provider';
 import { AppError } from '@/shared/errors/AppError';
-import AuthUsersService from '@/modules/users/services/auth-user-service';
+import { AuthUsersService } from '@/modules/users/services/auth-user-service';
 import { InMemoryUserRepository } from './../repositories/in-memory-repository/in-memory-user-repository';
 
 let inMemoryUserRepository: InMemoryUserRepository;

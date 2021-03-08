@@ -1,4 +1,4 @@
-import FindUsersService from '@/modules/users/services/find-users-service';
+import { FindUsersService } from '@/modules/users/services/find-users-service';
 import { InMemoryUserRepository } from './../repositories/in-memory-repository/in-memory-user-repository';
 
 let inMemoryUserRepository: InMemoryUserRepository;

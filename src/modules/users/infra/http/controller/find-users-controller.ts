@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import FindUsersService from '@/modules/users/services/find-users-service';
+import { FindUsersService } from '@/modules/users/services/find-users-service';
 import { Request, Response } from 'express';
 
 export class FindUsersController {

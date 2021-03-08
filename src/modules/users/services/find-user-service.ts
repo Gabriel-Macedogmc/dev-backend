@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class FindUsersService {
+export class FindUserService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
   ) {}

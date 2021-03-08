@@ -1,4 +1,4 @@
-import CreateUserService from '@/modules/users/services/create-user-service';
+import { CreateUserService } from '@/modules/users/services/create-user-service';
 import { AppError } from '@/shared/errors/AppError';
 import { InMemoryHashProvider } from './../provider/fake/in-memory-hash-provider';
 import { InMemoryUserRepository } from '../repositories/in-memory-repository/in-memory-user-repository';
