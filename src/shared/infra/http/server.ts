@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import AppError from '@/shared/errors/AppError';
+import { AppError } from '@/shared/errors/AppError';
 import '../../container';
 import Express, { json, Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
