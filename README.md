@@ -50,8 +50,22 @@ services:
 $ docker compose up -d
 ```
 
+## OrmConfig: 
+```javascript
+ {
+  type: "postgres",
+  url: process.env.DATABASE_URL,
+  migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
+  entities: ["./src/modules/**/infra/typeorm/entities/*.ts"],
+  cli: {
+    migrationsDir: "./src/shared/infra/typeorm/migrations"
+  }
+}
+```
+
 # Exemplos de Endpoints
 - Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
+- Antes de todas as rotas http://localhost:3333/
 
 POST /users/
 ```
