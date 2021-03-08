@@ -1,6 +1,6 @@
 # Desafio para Vaga Backend
 
-### Projeto consiste em um cadastro de usuário passando seus dados e em seguida o cadastro de seu endereço com validação de email.
+### Projeto consiste em um cadastro de usuário passando seus dados e em seguida o cadastro de seu endereço com validação de email, autenticação através de token e testes unitátios. Foi construído sob uma arquitetura DDD junto ao Typescript e princípios SOLID.
 
 # Libs Utilizadas: 
 
