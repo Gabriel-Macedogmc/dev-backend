@@ -65,6 +65,7 @@ $ docker compose up -d
 
 # Exemplos de Endpoints
 - Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
+- Antes de todas as rotas http://localhost:3333/
 
 POST /users/
 ```
