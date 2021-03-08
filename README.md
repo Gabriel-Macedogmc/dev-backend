@@ -23,9 +23,35 @@
 #### Update do Endereço 
 #### Deleção do Endereço
 
-# Exemplos de Endpoints
+### Rodar projeto:
+```console
+$ yarn //instala dependências
 
-- Todos parâmetros passados as rotas são do tipo string
+$ yarn dev //starta o servidor
+```
+
+# Usando Docker Compose:
+```yml
+version: '3.7'
+services:
+  db:
+    image: postgres:latest
+    container_name: vaga-dev
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DATABASE=vaga
+    ports:
+      - '5435:5432'
+
+```
+
+## Rodando usando Docker Compose:
+```console
+$ docker compose up -d
+```
+
+# Exemplos de Endpoints
+- Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
 
 POST /users/
 ```
