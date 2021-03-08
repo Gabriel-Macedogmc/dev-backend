@@ -93,7 +93,6 @@ PUT /users/:user_id
   old_password:old_password
   age:age,
   weight:weight,
-  ethnicity:ethnicity
 }
 ```
 
