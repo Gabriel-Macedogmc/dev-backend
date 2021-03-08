@@ -11,7 +11,8 @@ describe('Updated Address', () => {
     inMemoryAddressRepository = new InMemoryAddressRepository();
     updateService = new UpdateAddressService(inMemoryAddressRepository);
   });
-  it('should be able to update the address', async () => {
+
+  it('should NOT be able to update address without user_id', async () => {
     const address = await inMemoryAddressRepository.create({
       address: 'any_address',
       city: 'any_city',
@@ -19,21 +20,35 @@ describe('Updated Address', () => {
       CEP: 'any_cep',
       number: 'any_number',
       state: 'any_state',
-      user_id: 'any_user_id',
+      user_id: 'any_user',
     });
 
-    const updatedAddress = await updateService.execute({
-      address_id: address.id,
-      address: 'any_address',
-      city: 'any_city',
-      complement: 'any_complement',
-      CEP: 'any_cep',
-      number: 'any_number',
-      state: 'any_state',
-      user_id: 'any_user_id',
-    });
+    await expect(
+      updateService.execute({
+        address_id: address.id,
+        address: 'any_address',
+        city: 'any_city',
+        complement: 'any_complement',
+        CEP: 'any_cep',
+        number: 'any_number',
+        state: 'any_state',
+        user_id: '',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 
-    expect(updatedAddress?.address).toBe('any_address');
-    expect(updatedAddress?.CEP).toBe('any_cep');
+  it('should NOT be able update address non-existing', async () => {
+    await expect(
+      updateService.execute({
+        address_id: 'address_non_existing',
+        address: 'any_address',
+        city: 'any_city',
+        complement: 'any_complement',
+        CEP: 'any_cep',
+        number: 'any_number',
+        state: 'any_state',
+        user_id: 'any_user',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

@@ -1,3 +1,4 @@
+import { AppError } from './../../../shared/errors/AppError';
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
@@ -9,6 +10,12 @@ export default class DeleteUserService {
   ) {}
 
   public async execute(user_id: string): Promise<void> {
+    const user = await this.userRepository.findById(user_id);
+
+    if (!user) {
+      throw new AppError('User not found', 401);
+    }
+
     await this.userRepository.delete(user_id);
   }
 }

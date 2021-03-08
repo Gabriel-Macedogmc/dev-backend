@@ -1,5 +1,5 @@
+import 'reflect-metadata';
 import { AppError } from '@/shared/errors/AppError';
-import { IAddress } from './../dtos/IAddress';
 import { IAddressRepository } from './../repositories/IAddressRepository';
 import { inject, injectable } from 'tsyringe';
 import { Address } from '../infra/typeorm/entities/Address';
@@ -30,7 +30,7 @@ export class UpdateAddressService {
     number,
     state,
     user_id,
-  }: IRequest): Promise<Address | undefined> {
+  }: IRequest): Promise<Address> {
     const addressExist = await this.addressRepository.findById(address_id);
 
     if (!addressExist) {
@@ -41,7 +41,7 @@ export class UpdateAddressService {
       throw new AppError('CEP invalid!', 401);
     }
 
-    if (!user_id) {
+    if (!user_id || '') {
       throw new AppError('User not exist', 401);
     }
 

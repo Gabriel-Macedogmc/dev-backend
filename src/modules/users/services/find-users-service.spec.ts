@@ -12,29 +12,29 @@ enum EthnicityType {
   indígena = 'indígena',
 }
 
-// describe('FindUsers', () => {
-//   beforeEach(() => {
-//     inMemoryUserRepository = new InMemoryUserRepository();
-//     findUsersService = new FindUsersService(inMemoryUserRepository);
-//   });
+describe('FindUsers', () => {
+  beforeEach(() => {
+    inMemoryUserRepository = new InMemoryUserRepository();
+    findUsersService = new FindUsersService(inMemoryUserRepository);
+  });
 
-//   it('should be able to return all users', async () => {
-//     const data = {
-//       name: 'John Doe',
-//       password: '123456',
-//       email: 'johndoe@example.com',
-//       age: 'any_age',
-//       telephone: 'any_telephone',
-//       weight: 'any_weight',
-//       ethnicity: EthnicityType.branca,
-//     };
+  it('should be able to return all users', async () => {
+    const data = {
+      name: 'John Doe',
+      password: '123456',
+      email: 'johndoe@example.com',
+      age: 'any_age',
+      telephone: 'any_telephone',
+      weight: 'any_weight',
+      ethnicity: EthnicityType.branca,
+    };
 
-//     const user1 = await inMemoryUserRepository.create(data);
-//     const user2 = await inMemoryUserRepository.create(data);
-//     const user3 = await inMemoryUserRepository.create(data);
+    const user1 = await inMemoryUserRepository.create(data);
+    const user2 = await inMemoryUserRepository.create(data);
+    const user3 = await inMemoryUserRepository.create(data);
 
-//     const users = await findUsersService.execute();
+    const users = await findUsersService.execute();
 
-//     expect(users).toEqual([user1, user2, user3]);
-//   });
-// });
+    expect(users).toEqual([user1, user2, user3]);
+  });
+});

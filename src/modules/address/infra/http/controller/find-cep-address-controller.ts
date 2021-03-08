@@ -1,4 +1,4 @@
-import { FindCepAddressService } from './../../../services/find-cep-addres-service';
+import { FindCepAddressService } from '../../../services/find-cep-address-service';
 import { container } from 'tsyringe';
 import { Request, Response } from 'express';
 
