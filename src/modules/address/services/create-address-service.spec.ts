@@ -18,6 +18,15 @@ describe('Create Address', () => {
   });
 
   it('should be able to create a new address', async () => {
+    const user = await inMemoryUserRepository.create({
+      name: 'John Doe',
+      password: '123456',
+      email: 'johndoe@example.com',
+      age: 'any_age',
+      telephone: 'any_telephone',
+      weight: 'any_weight',
+      ethnicity: 'branca',
+    });
     const address = await createAddress.execute({
       address: 'any_address',
       city: 'any_city',
@@ -25,7 +34,7 @@ describe('Create Address', () => {
       CEP: 'any_cep',
       number: 'any_number',
       state: 'any_state',
-      user_id: 'any_user_id',
+      user_id: user.id,
     });
 
     expect(address).toHaveProperty('id');
