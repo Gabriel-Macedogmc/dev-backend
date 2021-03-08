@@ -1,14 +1,20 @@
+import { InMemoryUserRepository } from './../../users/repositories/in-memory-repository/in-memory-user-repository';
 import { AppError } from '@/shared/errors/AppError';
 import { CreateAddressService } from '@/modules/address/services/create-address-service';
 import { InMemoryAddressRepository } from './../repositories/in-memory-repository/in-memory-address-repository';
 
 let inMemoryAddressRepository: InMemoryAddressRepository;
+let inMemoryUserRepository: InMemoryUserRepository;
 let createAddress: CreateAddressService;
 
 describe('Create Address', () => {
   beforeEach(() => {
     inMemoryAddressRepository = new InMemoryAddressRepository();
-    createAddress = new CreateAddressService(inMemoryAddressRepository);
+    inMemoryUserRepository = new InMemoryUserRepository();
+    createAddress = new CreateAddressService(
+      inMemoryAddressRepository,
+      inMemoryUserRepository,
+    );
   });
 
   it('should be able to create a new address', async () => {

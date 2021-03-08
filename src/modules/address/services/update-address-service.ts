@@ -1,3 +1,4 @@
+import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
 import 'reflect-metadata';
 import { AppError } from '@/shared/errors/AppError';
 import { IAddressRepository } from './../repositories/IAddressRepository';
@@ -19,6 +20,7 @@ interface IRequest {
 export class UpdateAddressService {
   constructor(
     @inject('AddressRepository') private addressRepository: IAddressRepository,
+    @inject('UserRepository') private userRepository: IUserRepository,
   ) {}
 
   public async execute({
@@ -32,6 +34,7 @@ export class UpdateAddressService {
     user_id,
   }: IRequest): Promise<Address> {
     const addressExist = await this.addressRepository.findById(address_id);
+    const user = await this.userRepository.findById(user_id);
 
     if (!addressExist) {
       throw new AppError('Address not exist!', 401);
@@ -41,11 +44,18 @@ export class UpdateAddressService {
       throw new AppError('CEP invalid!', 401);
     }
 
-    if (!user_id || '') {
+    if (!user || '') {
       throw new AppError('User not exist', 401);
     }
 
-    await this.addressRepository.save(addressExist);
-    return addressExist;
+    addressExist.CEP = CEP;
+    addressExist.address = address;
+    addressExist.city = city;
+    addressExist.state = state;
+    addressExist.complement = complement;
+    addressExist.number = number;
+    addressExist.user_id = user_id;
+
+    return await this.addressRepository.save(addressExist);
   }
 }

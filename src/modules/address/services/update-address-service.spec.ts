@@ -1,15 +1,21 @@
 import { UpdateAddressService } from './update-address-service';
+import { InMemoryUserRepository } from './../../users/repositories/in-memory-repository/in-memory-user-repository';
 import { AppError } from '@/shared/errors/AppError';
 
 import { InMemoryAddressRepository } from './../repositories/in-memory-repository/in-memory-address-repository';
 
 let inMemoryAddressRepository: InMemoryAddressRepository;
+let inMemoryUserRepository: InMemoryUserRepository;
 let updateService: UpdateAddressService;
 
 describe('Updated Address', () => {
   beforeEach(() => {
     inMemoryAddressRepository = new InMemoryAddressRepository();
-    updateService = new UpdateAddressService(inMemoryAddressRepository);
+    inMemoryUserRepository = new InMemoryUserRepository();
+    updateService = new UpdateAddressService(
+      inMemoryAddressRepository,
+      inMemoryUserRepository,
+    );
   });
 
   it('should NOT be able to update address without user_id', async () => {
