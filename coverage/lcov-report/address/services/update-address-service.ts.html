@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.24% </span>
+                <span class="strong">78.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>45/51</span>
+                <span class='fraction'>48/61</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.24% </span>
+                <span class="strong">78.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>45/51</span>
+                <span class='fraction'>48/61</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -108,7 +108,18 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -130,8 +141,10 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -158,8 +171,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'reflect-metadata';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
+import 'reflect-metadata';
 import { AppError } from '@/shared/errors/AppError';
 import { IAddressRepository } from './../repositories/IAddressRepository';
 import { inject, injectable } from 'tsyringe';
@@ -180,6 +201,7 @@ interface IRequest {
 export class UpdateAddressService {
   constructor(
     @inject('AddressRepository') private addressRepository: IAddressRepository,
+    @inject('UserRepository') private userRepository: IUserRepository,
   ) {}
 &nbsp;
   public async execute({
@@ -193,6 +215,7 @@ export class UpdateAddressService {
     user_id,
   }: IRequest): Promise&lt;Address&gt; {
     const addressExist = await this.addressRepository.findById(address_id);
+    const user = await this.userRepository.findById(user_id);
 &nbsp;
     if (!addressExist) {
       throw new AppError('Address not exist!', 401);
@@ -202,12 +225,19 @@ export class UpdateAddressService {
 <span class="cstat-no" title="statement not covered" >      throw new AppError('CEP invalid!', 401);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-    if (!user_id<span class="branch-0 cbranch-no" title="branch not covered" > || '')</span> {
+    if (!user<span class="branch-0 cbranch-no" title="branch not covered" > || '')</span> {
       throw new AppError('User not exist', 401);
     }
 <span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span>
-<span class="cstat-no" title="statement not covered" >    await this.addressRepository.save(addressExist);</span>
-<span class="cstat-no" title="statement not covered" >    return addressExist;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.CEP = CEP;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.address = address;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.city = city;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.state = state;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.complement = complement;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.number = number;</span>
+<span class="cstat-no" title="statement not covered" >    addressExist.user_id = user_id;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return await this.addressRepository.save(addressExist);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -217,7 +247,7 @@ export class UpdateAddressService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Mar 08 2021 04:40:49 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Mar 08 2021 14:00:31 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../prettify.js"></script>
