@@ -20,7 +20,11 @@ const addressRouter = Router();
 addressRouter.post('/', AuthMiddleware, createAddressController.create);
 addressRouter.get('/', AuthMiddleware, findAddressController.find);
 addressRouter.get('/cep', AuthMiddleware, findCepAddressController.index);
-addressRouter.put('/', AuthMiddleware, updateAddressController.create);
+addressRouter.put(
+  '/:address_id',
+  AuthMiddleware,
+  updateAddressController.create,
+);
 addressRouter.delete(
   '/:address_id',
   AuthMiddleware,

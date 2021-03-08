@@ -13,7 +13,6 @@ export class UpdateUserController {
       age,
       telephone,
       weight,
-      ethnicity,
     } = req.body;
 
     const userService = container.resolve(UpdateUsersService);
@@ -26,7 +25,6 @@ export class UpdateUserController {
       age,
       telephone,
       weight,
-      ethnicity,
     });
 
     return res.status(201).json(user);

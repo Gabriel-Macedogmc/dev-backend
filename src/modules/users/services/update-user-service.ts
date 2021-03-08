@@ -9,6 +9,7 @@ import {
 } from '@/modules/users/infra/typeorm/entities/User';
 
 import { AppError } from '@/shared/errors/AppError';
+import e from 'express';
 
 interface IRequest {
   user_id: string;
@@ -19,7 +20,7 @@ interface IRequest {
   email: string;
   age: string;
   weight: string;
-  ethnicity: EthnicityType;
+  ethnicity?: EthnicityType;
 }
 
 @injectable()
@@ -33,6 +34,9 @@ export class UpdateUsersService {
     user_id,
     name,
     email,
+    telephone,
+    age,
+    weight,
     password,
     old_password,
   }: IRequest): Promise<User> {
@@ -70,6 +74,12 @@ export class UpdateUsersService {
 
       user.password = await this.hash.encrypt(password);
     }
+
+    user.name = name;
+    user.email = email;
+    user.age = age;
+    user.weight = weight;
+    user.telephone = telephone;
 
     return this.userRepository.save(user);
   }

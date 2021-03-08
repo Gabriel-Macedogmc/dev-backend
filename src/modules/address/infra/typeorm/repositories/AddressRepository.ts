@@ -17,7 +17,8 @@ export class AddressRepository implements IAddressRepository {
   }
 
   public async save(data: IAddress): Promise<Address> {
-    return await this.ormRepository.save(data);
+    const address = await this.ormRepository.save(data);
+    return address;
   }
 
   public async find(): Promise<Address[]> {

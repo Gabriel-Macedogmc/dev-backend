@@ -10,14 +10,14 @@ export class UpdateAddressController {
 
     const addressService = container.resolve(UpdateAddressService);
     const Address = await addressService.execute({
-      address_id,
-      user_id,
       address,
-      number,
-      complement,
+      address_id,
       CEP: cep,
       city,
+      complement,
+      number,
       state,
+      user_id,
     });
 
     return res.status(201).json(Address);
