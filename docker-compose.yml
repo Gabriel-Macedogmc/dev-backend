@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:latest
+    container_name: vaga-dev
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DATABASE=vaga
+    ports:
+      - '5435:5432'
