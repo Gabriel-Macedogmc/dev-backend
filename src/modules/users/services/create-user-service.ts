@@ -42,6 +42,12 @@ export default class CreateUserService {
       throw new AppError('email already exist!!', 401);
     }
 
+    let tester = /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+    if (!tester.test(email)) {
+      throw new AppError('Email invalid', 401);
+    }
+
     const passwordHashed = await this.hash.encrypt(password);
 
     const user = await this.userRepository.create({
