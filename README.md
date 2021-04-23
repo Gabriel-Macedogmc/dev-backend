@@ -95,7 +95,7 @@ POST /session/
 
 -Listar Todos Usuários
  	 
-Get /user
+GET /user
   
 exemplo de retorno:
   
@@ -148,7 +148,7 @@ GET /user/profile/:user_id
 
 -Atualizar Usuário 
 
- PUT /user/:user_id
+PUT /user/profile/:user_id
  
 - a rota receberá um user_id como parâmentro e atualizara o perfil, caso todos os dados estejam preenchidos
 
