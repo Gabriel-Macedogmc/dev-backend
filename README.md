@@ -64,7 +64,7 @@ services:
 POST /user
 
 ```jsx
-	{
+{
 	  "name": "John Doe",
 	  "email": "johndoe@email.com",
 	  "password": "123",
@@ -173,8 +173,8 @@ PUT /user/profile/:user_id
 - a rota receberá um user_id como parâmentro e deletará o perfil
 
 ```jsx
-	{
-  "user deleted" 
+{
+ "user deleted" 
 }
 ```
 
