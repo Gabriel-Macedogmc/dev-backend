@@ -11,18 +11,6 @@
 ### 5. typeorm (ORM para comunição entre models e migrations do Banco)
 ### 6. tsyringe (Containers para injeção de dependências)
 
-# Funcionalidades:
-
-#### Criação do User
-#### Login do User
-#### Listagem do User
-#### Update do User
-#### Deleção do User
-#### Criação do Endereço
-#### Listagem do Endereço junto ao User
-#### Update do Endereço 
-#### Deleção do Endereço
-
 ### Rodar projeto:
 ```console
 $ yarn //instala dependências
@@ -50,9 +38,9 @@ services:
 ```
 
 ## Rodando usando Docker Compose:
-```console
-$ docker compose up -d
-```
+- Antes de startar o servidor deve-se iniciar o docker utilizando o comando "docker compose -d up"
+- após iniciado, deve-se criar uma Database chamada "desafio".
+
 
 ## OrmConfig: 
 ```javascript
@@ -71,18 +59,21 @@ $ docker compose up -d
 - Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
 - Antes de todas as rotas http://localhost:3333/
 
-POST /users/
-```
-{
-  name:name,
-  telephone:telephone,	
-  email:email,
-  password:password,
-  age:age,
-  weight:weight,
-  ethnicity:ethnicity
-}
-```
+- Criar Usuário
+
+		POST /user
+  
+	``` jsx
+	{
+	"name": "John Doe",
+	"email": "johndoe@email.com",
+	"password": "123",
+	"telephone": 000000,	
+	"age": 11,
+	"weight": 11.1,
+	"ethnicity": "any"
+	}
+	```
 PUT /users/:user_id
 ```
 {
