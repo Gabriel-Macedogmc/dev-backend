@@ -59,7 +59,7 @@ services:
 - Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
 - Antes de todas as rotas http://localhost:3333/
 
-- Criar Usuário
+-Criar Usuário
 
 POST /user
 
@@ -79,9 +79,10 @@ POST /user
 - outros campos como age e weight não permitem valores menores que 0.
 
 
-- Logar Usuário
+-Logar Usuário
 
 POST /session/
+
 ```jsx
 {
   email:"johndoe@email.com",
@@ -92,11 +93,11 @@ POST /session/
 - o exemplo de retorna da rota acima seria um Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTkyMDIxMjQsImV4cCI6MTYxOTgwNjkyNCwic3ViIjoiZjM0Y2UwYzQtMDQ0NC00NDQ3LTlhYzAtMDg1MDVlNTMxYWRhIn0.XmMY9wgypXeOywOCJLBPEF-S_jiCUOJUd-GHod70GK4"
 
 
-- Listar Todos Usuários
+-Listar Todos Usuários
  	 
- Get /user
+Get /user
   
-  exemplo de retorno:
+exemplo de retorno:
   
  ```jsx 
   [
@@ -123,7 +124,7 @@ POST /session/
    ]
   ```
   
-- Listar Único Usuário
+-Listar Único Usuário
   
 GET /user/profile/:user_id
 
@@ -145,7 +146,7 @@ GET /user/profile/:user_id
 - por segurança ao retorna o usuário sua senha foi tirada do retorno.
 
 
-- Atualizar Usuário 
+-Atualizar Usuário 
 
  PUT /user/:user_id
  
@@ -165,7 +166,7 @@ GET /user/profile/:user_id
 
 - o campo ethnicity não esta liberado para alterações
 
-- Deletar Usuário
+-Deletar Usuário
 
  DELETE /user/profile/:user_id
 
@@ -177,10 +178,11 @@ GET /user/profile/:user_id
 }
 ```
 
-- Criar um Endereço
+-Criar um Endereço
 
 POST /address/
-```
+
+```jsx
 {
   	"address": "any_address",
 	  "number": 294,
@@ -194,7 +196,7 @@ POST /address/
 
 - deve-se passar o campo user_id, com o Id de algum usuário já criado
 
-- Listar todos Endereços
+-Listar todos Endereços
 
 GET /address
 
@@ -252,7 +254,8 @@ GET /address
   }
 ]
 ```
-- Listar Único Endereço
+
+-Listar Único Endereço
 
 GET /address/:address_id
 
@@ -284,7 +287,8 @@ GET /address/:address_id
     }
   }
 ```
-- Atualizar Endereço
+
+-Atualizar Endereço
 
 PUT /address/:address_id
 
@@ -302,7 +306,7 @@ PUT /address/:address_id
 }
 ```
 
-- Deletar Endereço
+-Deletar Endereço
 
 DELETE /address/:addres_id
 
