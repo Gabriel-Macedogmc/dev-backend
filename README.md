@@ -61,9 +61,9 @@ services:
 
 - Criar Usuário
 
-					 	 POST /user
-  
-	``` jsx
+POST /user
+
+```jsx
 	{
 	"name": "John Doe",
 	"email": "johndoe@email.com",
@@ -73,7 +73,7 @@ services:
 	"weight": 11.1,
 	"ethnicity": "any"
 	}
-	```
+```
 
 - Somente será aceito no campo ethnicity valores como: branca, preta, parda ou indigina
 - outros campos como age e weight não permitem valores menores que 0.
