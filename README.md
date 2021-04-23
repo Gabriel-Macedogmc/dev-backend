@@ -154,13 +154,13 @@ PUT /user/profile/:user_id
 
 ```jsx 
 {
-	  "name": "user_atualizado",
-	  "telephone": "1234566",	
-	  "email": "email_atualizado@email.com",
-	  "password": "123123",
-	  "old_password": "123123",
-	  "age": 20,
-	  "weight": 50
+  "name": "user_atualizado",
+  "telephone": "1234566",	
+  "email": "email_atualizado@email.com",
+  "password": "123123",
+  "old_password": "123123",
+  "age": 20,
+  "weight": 50
 }
 ```
 
