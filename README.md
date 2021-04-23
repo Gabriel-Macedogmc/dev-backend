@@ -65,14 +65,14 @@ POST /user
 
 ```jsx
 {
-	  "name": "John Doe",
-	  "email": "johndoe@email.com",
-	  "password": "123",
-	  "telephone": 000000,	
-	  "age": 11,
-	  "weight": 11.1,
-	  "ethnicity": "any"
-	}
+	 "name": "John Doe",
+	 "email": "johndoe@email.com",
+	 "password": "123",
+	 "telephone": 000000,	
+	 "age": 11,
+	 "weight": 11.1,
+	 "ethnicity": "any"
+}
 ```
 
 - Somente será aceito no campo ethnicity valores como: branca, preta, parda ou indigina
