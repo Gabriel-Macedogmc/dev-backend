@@ -1,3 +1,4 @@
+import { addressValidationGroup } from './../../../shared/validators/address-validator/address-validation-group';
 import { InMemoryUserRepository } from './../../users/repositories/in-memory-repository/in-memory-user-repository';
 import { AppError } from '@/shared/errors/AppError';
 import { CreateAddressService } from '@/modules/address/services/create-address-service';
@@ -14,6 +15,7 @@ describe('Create Address', () => {
     createAddress = new CreateAddressService(
       inMemoryAddressRepository,
       inMemoryUserRepository,
+      addressValidationGroup,
     );
   });
 
@@ -22,36 +24,22 @@ describe('Create Address', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 3,
+      telephone: 123456,
+      weight: 10.5,
       ethnicity: 'branca',
     });
     const address = await createAddress.execute({
       address: 'any_address',
       city: 'any_city',
       complement: 'any_complement',
-      CEP: 'any_cep',
-      number: 'any_number',
+      cep: 1234123,
+      number: 123,
       state: 'any_state',
       user_id: user.id,
     });
 
     expect(address).toHaveProperty('id');
-  });
-
-  it('should NOT accept more than 8 chars in CEP', async () => {
-    await expect(
-      createAddress.execute({
-        address: 'any_address',
-        city: 'any_city',
-        complement: 'any_complement',
-        CEP: 'any_cep'.repeat(100),
-        number: 'any_number',
-        state: 'any_state',
-        user_id: 'user_id',
-      }),
-    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should NOT be able to create address without user_id', async () => {
@@ -60,8 +48,8 @@ describe('Create Address', () => {
         address: 'any_address',
         city: 'any_city',
         complement: 'any_complement',
-        CEP: 'any_cep',
-        number: 'any_number',
+        cep: 1234123,
+        number: 123,
         state: 'any_state',
         user_id: '',
       }),

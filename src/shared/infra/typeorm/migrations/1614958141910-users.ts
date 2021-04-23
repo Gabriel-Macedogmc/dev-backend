@@ -19,7 +19,7 @@ export class users1614958141910 implements MigrationInterface {
           },
           {
             name: 'telephone',
-            type: 'varchar',
+            type: 'bigint',
           },
           {
             name: 'email',
@@ -33,11 +33,11 @@ export class users1614958141910 implements MigrationInterface {
 
           {
             name: 'age',
-            type: 'varchar',
+            type: 'integer',
           },
           {
             name: 'weight',
-            type: 'varchar',
+            type: 'integer',
           },
           {
             name: 'ethnicity',

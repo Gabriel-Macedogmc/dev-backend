@@ -1,3 +1,4 @@
+import { AddressValidationGroup } from './../../../shared/validators/address-validator/address-validation-group';
 import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
 import 'reflect-metadata';
 import { IAddressRepository } from './../repositories/IAddressRepository';
@@ -8,9 +9,9 @@ import { AppError } from '@/shared/errors/AppError';
 interface IRequest {
   address: string;
   user_id: string;
-  number: string;
+  number: number;
   complement: string;
-  CEP: string;
+  cep: number;
   city: string;
   state: string;
 }
@@ -20,11 +21,13 @@ export class CreateAddressService {
   constructor(
     @inject('AddressRepository') private addressRepository: IAddressRepository,
     @inject('UserRepository') private userRepository: IUserRepository,
+    @inject('AddressValidation')
+    private addressValidation: AddressValidationGroup,
   ) {}
 
   public async execute({
     address,
-    CEP,
+    cep,
     city,
     complement,
     number,
@@ -32,17 +35,20 @@ export class CreateAddressService {
     user_id,
   }: IRequest): Promise<Address> {
     const user = await this.userRepository.findById(user_id);
-    if (!CEP || CEP.length >= 8) {
-      throw new AppError('CEP invalid!', 401);
-    }
 
     if (!user?.id) {
       throw new AppError('User not exist', 401);
     }
 
+    const validate = this.addressValidation.validate(cep);
+
+    if (!validate) {
+      throw new AppError('Cep is Invalid', 401);
+    }
+
     const addressCreate = await this.addressRepository.create({
       address,
-      CEP,
+      cep,
       city,
       complement,
       number,

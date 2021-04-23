@@ -21,9 +21,9 @@ describe('Authenticate User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -50,9 +50,9 @@ describe('Authenticate User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 

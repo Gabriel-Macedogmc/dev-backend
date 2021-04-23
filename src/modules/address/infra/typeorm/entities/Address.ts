@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -19,13 +20,13 @@ export class Address {
   address: string;
 
   @Column()
-  number: string;
+  number: number;
 
   @Column()
   complement: string;
 
   @Column()
-  CEP: string;
+  cep: number;
 
   @Column()
   city: string;
@@ -36,7 +37,7 @@ export class Address {
   @Column()
   user_id: string;
 
-  @OneToOne(() => User, address => User, {
+  @ManyToOne(() => User, {
     cascade: ['insert', 'update'],
   })
   @JoinColumn({ name: 'user_id' })

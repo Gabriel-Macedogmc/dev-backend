@@ -46,6 +46,6 @@ export class UserRepository implements IUserRepository {
 
   public async delete(user_id: string): Promise<void> {
     const user = await this.ormRepository.findOneOrFail(user_id);
-    await this.ormRepository.remove(user);
+    await this.ormRepository.delete(user);
   }
 }

@@ -16,8 +16,8 @@ describe('Delete Address', () => {
       address: 'any_address',
       city: 'any_city',
       complement: 'any_complement',
-      CEP: 'any_cep',
-      number: 'any_number',
+      cep: 1234123,
+      number: 123,
       state: 'any_state',
       user_id: 'any_user_id',
     });

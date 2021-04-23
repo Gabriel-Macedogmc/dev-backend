@@ -1,3 +1,4 @@
+import { userValidationGroup } from '@/shared/validators/user-validator/user-validation-group';
 import { CreateUserService } from '@/modules/users/services/create-user-service';
 import { AppError } from '@/shared/errors/AppError';
 import { InMemoryHashProvider } from './../provider/fake/in-memory-hash-provider';
@@ -11,7 +12,11 @@ describe('create user', () => {
   beforeEach(() => {
     hashProvider = new InMemoryHashProvider();
     inMemoryUserRepository = new InMemoryUserRepository();
-    createUser = new CreateUserService(inMemoryUserRepository, hashProvider);
+    createUser = new CreateUserService(
+      inMemoryUserRepository,
+      hashProvider,
+      userValidationGroup,
+    );
   });
 
   it('should be able to create a new user', async () => {
@@ -19,9 +24,9 @@ describe('create user', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      telephone: 92929372,
+      age: 3,
+      weight: 10.5,
       ethnicity: 'branca',
     });
     expect(user).toHaveProperty('id');
@@ -32,9 +37,9 @@ describe('create user', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      telephone: 92929372,
+      age: 3,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -43,9 +48,9 @@ describe('create user', () => {
         name: 'John Doe',
         password: '123456',
         email: 'johndoe@example.com',
-        age: 'any_age',
-        telephone: 'any_telephone',
-        weight: 'any_weight',
+        telephone: 92929372,
+        age: 3,
+        weight: 10.5,
         ethnicity: 'branca',
       }),
     ).rejects.toBeInstanceOf(AppError);

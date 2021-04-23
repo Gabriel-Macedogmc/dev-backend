@@ -16,9 +16,9 @@ describe('Delete User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 123456,
+      weight: 10.5,
       ethnicity: 'branca',
     });
     const deletedUser = await deleteUserService.execute(user.id);

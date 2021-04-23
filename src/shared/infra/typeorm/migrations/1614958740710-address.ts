@@ -32,8 +32,8 @@ export class address1614958740710 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'CEP',
-            type: 'varchar',
+            name: 'cep',
+            type: 'integer',
           },
           {
             name: 'city',

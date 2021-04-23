@@ -13,7 +13,7 @@ export class CreateAddressController {
       address,
       number,
       complement,
-      CEP: cep,
+      cep: cep,
       city,
       state,
     });

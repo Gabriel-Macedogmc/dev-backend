@@ -5,6 +5,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -26,7 +27,7 @@ export class User {
   name: string;
 
   @Column()
-  telephone: string;
+  telephone: number;
 
   @Column()
   email: string;
@@ -35,10 +36,10 @@ export class User {
   password: string;
 
   @Column()
-  age: string;
+  age: number;
 
   @Column()
-  weight: string;
+  weight: number;
 
   @Column({
     type: 'enum',
@@ -47,7 +48,7 @@ export class User {
   })
   ethnicity: EthnicityType;
 
-  @OneToOne(() => Address, users => Address)
+  @OneToMany(() => Address, address => Address)
   address: Address;
 
   @CreateDateColumn()

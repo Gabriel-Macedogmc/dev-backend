@@ -12,11 +12,6 @@ export class InMemoryAddressRepository implements IAddressRepository {
     return address;
   }
 
-  public async findByCep(cep: string): Promise<Address | undefined> {
-    const findCep = this.address.find(address => address.CEP === cep);
-    return findCep;
-  }
-
   public async findById(address_id: string): Promise<Address | undefined> {
     const findAddress = this.address.find(address => address.id === address.id);
 
@@ -49,8 +44,7 @@ export class InMemoryAddressRepository implements IAddressRepository {
   }
 
   public async delete(address_id: string): Promise<void> {
-    this.address.findIndex(find => find.id === address_id);
-
-    this.address.pop();
+    const findId = Number(address_id);
+    this.address.splice(findId, 1);
   }
 }

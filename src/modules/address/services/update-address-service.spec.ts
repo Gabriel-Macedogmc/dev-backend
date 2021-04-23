@@ -1,3 +1,4 @@
+import { addressValidationGroup } from './../../../shared/validators/address-validator/address-validation-group';
 import { UpdateAddressService } from './update-address-service';
 import { InMemoryUserRepository } from './../../users/repositories/in-memory-repository/in-memory-user-repository';
 import { AppError } from '@/shared/errors/AppError';
@@ -15,6 +16,7 @@ describe('Updated Address', () => {
     updateService = new UpdateAddressService(
       inMemoryAddressRepository,
       inMemoryUserRepository,
+      addressValidationGroup,
     );
   });
 
@@ -23,8 +25,8 @@ describe('Updated Address', () => {
       address: 'any_address',
       city: 'any_city',
       complement: 'any_complement',
-      CEP: 'any_cep',
-      number: 'any_number',
+      cep: 1234123,
+      number: 123,
       state: 'any_state',
       user_id: 'any_user',
     });
@@ -35,8 +37,8 @@ describe('Updated Address', () => {
         address: 'any_address',
         city: 'any_city',
         complement: 'any_complement',
-        CEP: 'any_cep',
-        number: 'any_number',
+        cep: 1234123,
+        number: 123,
         state: 'any_state',
         user_id: '',
       }),
@@ -50,8 +52,8 @@ describe('Updated Address', () => {
         address: 'any_address',
         city: 'any_city',
         complement: 'any_complement',
-        CEP: 'any_cep',
-        number: 'any_number',
+        cep: 1234123,
+        number: 123,
         state: 'any_state',
         user_id: 'any_user',
       }),

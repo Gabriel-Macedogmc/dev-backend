@@ -2,6 +2,7 @@ import { AppError } from '@/shared/errors/AppError';
 import { UpdateUsersService } from '@/modules/users/services/update-user-service';
 import { InMemoryUserRepository } from './../repositories/in-memory-repository/in-memory-user-repository';
 import { InMemoryHashProvider } from './../provider/fake/in-memory-hash-provider';
+import { userValidationGroup } from '@/shared/validators/user-validator/user-validation-group';
 
 let inMemoryUserRepository: InMemoryUserRepository;
 let updateUsersService: UpdateUsersService;
@@ -14,6 +15,7 @@ describe('Authenticate User', () => {
     updateUsersService = new UpdateUsersService(
       inMemoryUserRepository,
       hashProvider,
+      userValidationGroup,
     );
   });
   it('should be able to update user', async () => {
@@ -21,9 +23,9 @@ describe('Authenticate User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 123456,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -33,9 +35,9 @@ describe('Authenticate User', () => {
       email: 'johntreh@example.com',
       password: '123123',
       old_password: '123456',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -47,9 +49,9 @@ describe('Authenticate User', () => {
       name: 'John Treh',
       password: '123456',
       email: 'johntreh@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -57,9 +59,9 @@ describe('Authenticate User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -68,9 +70,9 @@ describe('Authenticate User', () => {
         user_id: user.id,
         name: 'John Doe',
         email: 'johndoe@example.com',
-        age: 'any_age',
-        telephone: 'any_telephone',
-        weight: 'any_weight',
+        age: 12,
+        telephone: 92929372,
+        weight: 10.5,
         ethnicity: 'branca',
       }),
     ).rejects.toBeInstanceOf(AppError);
@@ -81,9 +83,9 @@ describe('Authenticate User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -93,9 +95,9 @@ describe('Authenticate User', () => {
       email: 'johndoe@example.com',
       password: '123123',
       old_password: '123456',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -107,9 +109,9 @@ describe('Authenticate User', () => {
       name: 'John Doe',
       password: '123456',
       email: 'johndoe@example.com',
-      age: 'any_age',
-      telephone: 'any_telephone',
-      weight: 'any_weight',
+      age: 12,
+      telephone: 92929372,
+      weight: 10.5,
       ethnicity: 'branca',
     });
 
@@ -120,9 +122,9 @@ describe('Authenticate User', () => {
         password: '123123',
         old_password: 'wrong_old_password',
         email: 'johntreh@example.com',
-        age: 'any_age',
-        telephone: 'any_telephone',
-        weight: 'any_weight',
+        age: 12,
+        telephone: 92929372,
+        weight: 10.5,
         ethnicity: 'branca',
       }),
     ).rejects.toBeInstanceOf(AppError);
@@ -134,9 +136,9 @@ describe('Authenticate User', () => {
         user_id: 'non-existing-id',
         name: 'John Doe',
         email: 'johndoe@example.com',
-        age: 'any_age',
-        telephone: 'any_telephone',
-        weight: 'any_weight',
+        age: 12,
+        telephone: 92929372,
+        weight: 10.5,
         ethnicity: 'branca',
       }),
     ).rejects.toBeInstanceOf(AppError);

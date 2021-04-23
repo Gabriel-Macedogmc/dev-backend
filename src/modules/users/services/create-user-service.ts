@@ -1,22 +1,21 @@
 import 'reflect-metadata';
 import { IHashProvider } from './../provider/models/IHash';
 import { injectable, inject } from 'tsyringe';
-import { IUser } from './../dtos/IUser';
 import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
-
 import { AppError } from '@/shared/errors/AppError';
 import {
   EthnicityType,
   User,
 } from '@/modules/users/infra/typeorm/entities/User';
+import { UserValidationGroup } from '@/shared/validators/user-validator/user-validation-group';
 
 interface IRequest {
   name: string;
-  telephone: string;
+  telephone: number;
   password: string;
   email: string;
-  age: string;
-  weight: string;
+  age: number;
+  weight: number;
   ethnicity: EthnicityType;
 }
 
@@ -25,6 +24,7 @@ export class CreateUserService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
     @inject('HashProvider') private hash: IHashProvider,
+    @inject('UserValidation') private userValidation: UserValidationGroup,
   ) {}
 
   public async execute({
@@ -42,10 +42,15 @@ export class CreateUserService {
       throw new AppError('email already exist!!', 401);
     }
 
-    let tester = /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    const validate = this.userValidation.validate({
+      email,
+      telephone,
+      age,
+      weight,
+    });
 
-    if (!tester.test(email)) {
-      throw new AppError('Email invalid', 401);
+    if (!validate) {
+      throw new AppError('Param Invalid!!', 401);
     }
 
     const passwordHashed = await this.hash.encrypt(password);
@@ -54,8 +59,8 @@ export class CreateUserService {
       name,
       email,
       password: passwordHashed,
-      age,
       telephone,
+      age,
       weight,
       ethnicity,
     });

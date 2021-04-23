@@ -1,9 +1,9 @@
 export interface IAddress {
   address: string;
   user_id: string;
-  number: string;
+  number: number;
   complement: string;
-  CEP: string;
+  cep: number;
   city: string;
   state: string;
 }

@@ -28,22 +28,16 @@ export class AddressRepository implements IAddressRepository {
     return address;
   }
 
-  public async findByCep(cep: string): Promise<Address> {
-    const ceps = await this.ormRepository.findOneOrFail({
-      relations: ['user'],
-      where: { CEP: cep },
-    });
-
-    return ceps;
-  }
-
   public async findById(address_id: string): Promise<Address | undefined> {
-    const address = await this.ormRepository.findOne(address_id);
+    const address = await this.ormRepository.findOne({
+      relations: ['user'],
+      where: { id: address_id },
+    });
     return address;
   }
 
   public async delete(address_id: string): Promise<void> {
     const address = await this.ormRepository.findOneOrFail(address_id);
-    await this.ormRepository.remove(address);
+    await this.ormRepository.delete(address);
   }
 }

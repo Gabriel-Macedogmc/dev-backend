@@ -1,3 +1,4 @@
+import { AddressValidationGroup } from './../../../shared/validators/address-validator/address-validation-group';
 import { IUserRepository } from '@/modules/users/repositories/IUserRepository';
 import 'reflect-metadata';
 import { AppError } from '@/shared/errors/AppError';
@@ -9,9 +10,9 @@ interface IRequest {
   address_id: string;
   address: string;
   user_id: string;
-  number: string;
+  number: number;
   complement: string;
-  CEP: string;
+  cep: number;
   city: string;
   state: string;
 }
@@ -21,12 +22,14 @@ export class UpdateAddressService {
   constructor(
     @inject('AddressRepository') private addressRepository: IAddressRepository,
     @inject('UserRepository') private userRepository: IUserRepository,
+    @inject('AddressValidation')
+    private addressValidation: AddressValidationGroup,
   ) {}
 
   public async execute({
     address,
     address_id,
-    CEP,
+    cep,
     city,
     complement,
     number,
@@ -39,16 +42,17 @@ export class UpdateAddressService {
     if (!addressExist) {
       throw new AppError('Address not exist!', 401);
     }
-
-    if (CEP.length > 8) {
-      throw new AppError('CEP invalid!', 401);
-    }
-
     if (!user || '') {
       throw new AppError('User not exist', 401);
     }
 
-    addressExist.CEP = CEP;
+    const validate = this.addressValidation.validate(cep);
+
+    if (!validate) {
+      throw new AppError('Cep is Invalid', 401);
+    }
+
+    addressExist.cep = cep;
     addressExist.address = address;
     addressExist.city = city;
     addressExist.state = state;

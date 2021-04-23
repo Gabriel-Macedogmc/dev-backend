@@ -12,7 +12,7 @@ export class UpdateAddressController {
     const Address = await addressService.execute({
       address,
       address_id,
-      CEP: cep,
+      cep: cep,
       city,
       complement,
       number,

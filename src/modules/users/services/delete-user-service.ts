@@ -16,8 +16,6 @@ export class DeleteUserService {
       throw new AppError('User not found', 401);
     }
 
-    console.log(user);
-
     await this.userRepository.delete(user_id);
   }
 }

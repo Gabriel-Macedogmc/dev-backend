@@ -1,3 +1,4 @@
+import { UserValidationGroup } from '@/shared/validators/user-validator/user-validation-group';
 import 'reflect-metadata';
 import { IHashProvider } from './../provider/models/IHash';
 import { inject, injectable } from 'tsyringe';
@@ -9,17 +10,15 @@ import {
 } from '@/modules/users/infra/typeorm/entities/User';
 
 import { AppError } from '@/shared/errors/AppError';
-import e from 'express';
-
 interface IRequest {
   user_id: string;
   name: string;
-  telephone: string;
+  telephone: number;
   password?: string;
   old_password?: string;
   email: string;
-  age: string;
-  weight: string;
+  age: number;
+  weight: number;
   ethnicity?: EthnicityType;
 }
 
@@ -28,6 +27,7 @@ export class UpdateUsersService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
     @inject('HashProvider') private hash: IHashProvider,
+    private userValidation: UserValidationGroup,
   ) {}
 
   public async execute({
@@ -48,12 +48,6 @@ export class UpdateUsersService {
 
     const checkEmail = await this.userRepository.findByEmail(email);
 
-    let tester = /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
-    if (!tester.test(email)) {
-      throw new AppError('Email invalid', 401);
-    }
-
     if (checkEmail && checkEmail.id !== user_id) {
       throw new AppError('This email is already used by another user.');
     }
@@ -70,6 +64,17 @@ export class UpdateUsersService {
 
       if (!checkOldPassword) {
         throw new AppError('Wrong current password.');
+      }
+
+      const validate = this.userValidation.validate({
+        email,
+        age,
+        telephone,
+        weight,
+      });
+
+      if (!validate) {
+        throw new AppError('You need to inform the current Params.');
       }
 
       user.password = await this.hash.encrypt(password);
