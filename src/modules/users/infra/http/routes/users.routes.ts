@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import {
   CreateUserController,
   FindUsersController,
@@ -7,9 +6,6 @@ import {
   UpdateUserController,
   DeleteUserController,
 } from './../controller/index';
-
-import { celebrate, Segments, Joi } from 'celebrate';
-
 import { AuthMiddleware } from '@/shared/middleware/AuthMiddleware';
 
 const createUserController = new CreateUserController();
