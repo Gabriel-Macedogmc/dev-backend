@@ -184,14 +184,14 @@ POST /address/
 
 ```jsx
 {
-  	"address": "any_address",
-	  "number": 294,
-	  "complement": "any_complement",
-	  "cep": 974216714,
-	  "city": "any_city",
-	  "state": "any_state",
-	  "user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
-}
+  "address": "any_address",
+	"number": 294,
+  "complement": "any_complement",
+	"cep": 974216714,
+	"city": "any_city",
+	"state": "any_state",
+	"user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
+  }
 ```
 
 - deve-se passar o campo user_id, com o Id de algum usuário já criado
@@ -296,13 +296,13 @@ PUT /address/:address_id
 
 ```jsx 
 {
-  	"address": "any_address",
-	  "number": 294,
-	  "complement": "any_complement",
-	  "cep": 974216714,
-	  "city": "any_city",
-	  "state": "any_state",
-	  "user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
+  "address": "any_address",
+	"number": 294,
+	"complement": "any_complement",
+	"cep": 974216714,
+	"city": "any_city",
+	"state": "any_state",
+	"user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
 }
 ```
 
