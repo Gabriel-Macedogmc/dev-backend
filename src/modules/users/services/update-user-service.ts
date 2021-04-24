@@ -27,7 +27,7 @@ export class UpdateUsersService {
   constructor(
     @inject('UserRepository') private userRepository: IUserRepository,
     @inject('HashProvider') private hash: IHashProvider,
-    private userValidation: UserValidationGroup,
+    @inject('UserValidation') private userValidation: UserValidationGroup,
   ) {}
 
   public async execute({
