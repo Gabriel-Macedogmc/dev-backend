@@ -38,9 +38,10 @@ services:
 
 ```
 
-## Rodando usando Docker Compose:
+## Rodando Projeto com Docker Compose:
 - Antes de startar o servidor deve-se iniciar o docker utilizando o comando "docker compose -d up"
 - após iniciado, deve-se criar uma Database chamada "desafio".
+- Feito isso e startando o servidor node, utilizar endpoint: http://localhost:3333/
 
 
 ## OrmConfig: 
@@ -57,8 +58,6 @@ services:
 ```
 
 # Exemplos de Endpoints
-- Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
-- Antes de todas as rotas http://localhost:3333/
 
 -Criar Usuário
 
