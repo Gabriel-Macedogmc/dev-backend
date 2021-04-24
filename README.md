@@ -30,6 +30,7 @@ services:
     image: postgres:latest
     container_name: vaga-dev
     environment:
+      - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DATABASE=vaga
     ports:
@@ -37,9 +38,10 @@ services:
 
 ```
 
-## Rodando usando Docker Compose:
+## Rodando Projeto com Docker Compose:
 - Antes de startar o servidor deve-se iniciar o docker utilizando o comando "docker compose -d up"
 - após iniciado, deve-se criar uma Database chamada "desafio".
+- Feito isso e startando o servidor node, utilizar endpoint: http://localhost:3333/
 
 
 ## OrmConfig: 
@@ -56,8 +58,6 @@ services:
 ```
 
 # Exemplos de Endpoints
-- Todos parâmetros passados as rotas são do tipo string, e o modo de Auth está Bearer no Insomnia.  
-- Antes de todas as rotas http://localhost:3333/
 
 -Criar Usuário
 
@@ -65,14 +65,14 @@ POST /user
 
 ```jsx
 {
-	  "name": "John Doe",
-	  "email": "johndoe@email.com",
-	  "password": "123",
-	  "telephone": 000000,	
-	  "age": 11,
-	  "weight": 11.1,
-	  "ethnicity": "any"
-	}
+ "name": "John Doe",
+ "email": "johndoe@email.com",
+ "password": "123",
+ "telephone": 000000,	
+ "age": 11,
+ "weight": 11.1,
+ "ethnicity": "any"
+}
 ```
 
 - Somente será aceito no campo ethnicity valores como: branca, preta, parda ou indigina
@@ -154,13 +154,13 @@ PUT /user/profile/:user_id
 
 ```jsx 
 {
-	  "name": "user_atualizado",
-	  "telephone": "1234566",	
-	  "email": "email_atualizado@email.com",
-	  "password": "123123",
-	  "old_password": "123123",
-	  "age": 20,
-	  "weight": 50
+ "name": "user_atualizado",
+ "telephone": "1234566",	
+ "email": "email_atualizado@email.com",
+ "password": "123123",
+ "old_password": "123123",
+ "age": 20,
+ "weight": 50
 }
 ```
 
@@ -178,19 +178,21 @@ PUT /user/profile/:user_id
 }
 ```
 
+### -Todas Rotas com prefixo 'address' deve receber um token para ter acesso a elas
+
 -Criar um Endereço
 
 POST /address/
 
 ```jsx
 {
-  	"address": "any_address",
-	  "number": 294,
-	  "complement": "any_complement",
-	  "cep": 974216714,
-	  "city": "any_city",
-	  "state": "any_state",
-	  "user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
+ "address": "any_address",
+ "number": 294,
+ "complement": "any_complement",
+ "cep": 974216714,
+ "city": "any_city",
+ 	"state": "any_state",
+ 	"user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
 }
 ```
 
@@ -296,12 +298,12 @@ PUT /address/:address_id
 
 ```jsx 
 {
-  	"address": "any_address",
-	  "number": 294,
-	  "complement": "any_complement",
-	  "cep": 974216714,
-	  "city": "any_city",
-	  "state": "any_state",
+  "address": "any_address",
+  	"number": 294,
+  	"complement": "any_complement",
+  	"cep": 974216714,
+  	"city": "any_city",
+  	"state": "any_state",
 	  "user_id": "f34ce0c4-0444-4447-9ac0-08505e531ada"
 }
 ```
