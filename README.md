@@ -178,6 +178,8 @@ PUT /user/profile/:user_id
 }
 ```
 
+-Todas Rotas com prefixo 'address' deve receber um token para ter acesso a elas
+
 -Criar um Endereço
 
 POST /address/
