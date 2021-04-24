@@ -30,6 +30,7 @@ services:
     image: postgres:latest
     container_name: vaga-dev
     environment:
+      - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DATABASE=vaga
     ports:
