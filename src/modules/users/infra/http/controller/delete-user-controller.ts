@@ -7,8 +7,8 @@ export class DeleteUserController {
     const { user_id } = req.params;
     const userService = container.resolve(DeleteUserService);
 
-    const user = await userService.execute(user_id);
+    await userService.execute(user_id);
 
-    return res.status(200).json(user);
+    return res.status(200).json({ user: 'user deleted' });
   }
 }

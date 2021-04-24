@@ -38,6 +38,6 @@ export class AddressRepository implements IAddressRepository {
 
   public async delete(address_id: string): Promise<void> {
     const address = await this.ormRepository.findOneOrFail(address_id);
-    await this.ormRepository.delete(address);
+    await this.ormRepository.remove(address);
   }
 }
